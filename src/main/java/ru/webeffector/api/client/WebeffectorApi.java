@@ -1,7 +1,7 @@
 package ru.webeffector.api.client;
 
 import ru.webeffector.api.client.method.Auth;
-import ru.webeffector.api.client.method.Campaign;
+import ru.webeffector.api.client.method.Campaigns;
 
 /**
  * @author Ernest Sadykov
@@ -13,6 +13,6 @@ public interface WebeffectorApi {
 
     Auth auth();
 
-    Campaign campaign();
+    Campaigns campaign();
 
 }

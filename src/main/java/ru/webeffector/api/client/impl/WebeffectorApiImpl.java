@@ -2,7 +2,7 @@ package ru.webeffector.api.client.impl;
 
 import ru.webeffector.api.client.WebeffectorApi;
 import ru.webeffector.api.client.method.Auth;
-import ru.webeffector.api.client.method.Campaign;
+import ru.webeffector.api.client.method.Campaigns;
 import ru.webeffector.api.client.method.impl.ProxyBuilder;
 
 /**
@@ -28,8 +28,8 @@ class WebeffectorApiImpl implements WebeffectorApi {
     }
 
     @Override
-    public Campaign campaign() {
-        return create(Campaign.class);
+    public Campaigns campaign() {
+        return create(Campaigns.class);
     }
 
     private <T> T create(Class<T> targetInterface) {
