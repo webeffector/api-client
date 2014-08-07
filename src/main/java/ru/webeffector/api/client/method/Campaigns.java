@@ -1,6 +1,7 @@
 package ru.webeffector.api.client.method;
 
 import ru.webeffector.api.client.model.Campaign;
+import ru.webeffector.api.client.model.CampaignLite;
 import ru.webeffector.api.client.util.ApiMethod;
 import ru.webeffector.api.client.util.ContextArgument;
 import ru.webeffector.api.client.util.WebeffectorMethod;
@@ -16,6 +17,9 @@ public interface Campaigns {
     @ApiMethod(WebeffectorMethod.DeleteCampaign)
     boolean delete(@ContextArgument("id") String id);
 
+    @ApiMethod(WebeffectorMethod.GetCampaign)
+    Campaign get(@ContextArgument("id") String id);
+
     @ApiMethod(WebeffectorMethod.ListCampaigns)
-    List<Campaign> list();
+    List<CampaignLite> list();
 }

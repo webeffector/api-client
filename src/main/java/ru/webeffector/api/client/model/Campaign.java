@@ -1,137 +1,53 @@
 package ru.webeffector.api.client.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import ru.webeffector.api.client.model.promo.PromotionLite;
+import ru.webeffector.api.client.model.promo.SearchEngine;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Ernest Sadykov
- * @since 30.07.2014
+ * @since 07.08.2014
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Campaign {
+public class Campaign extends CampaignLite {
 
-    private String id;
-    private String region;
-    private String name;
-    private String url;
-    private String mode;
-    private List<String> pos;
-    private List<String> top;
-    private String comment;
-    private Double dayCost;
-    private Double budget;
+    private List<PromotionLite> promos;
+    private Map<SearchEngine, Double> success;
 
-    @JsonProperty("behaviorals_budget")
-    private Double behavioralsBudget;
-
-    @JsonProperty("behaviorals_expense")
-    private Double behavioralsExpense;
-
-    private String state;
-
-    public String getId() {
-        return id;
+    public List<PromotionLite> getPromos() {
+        return promos;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPromos(List<PromotionLite> promos) {
+        this.promos = promos;
     }
 
-    public String getRegion() {
-        return region;
+    public Map<SearchEngine, Double> getSuccess() {
+        return success;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setSuccess(Map<SearchEngine, Double> success) {
+        this.success = success;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getMode() {
-        return mode;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
-    public List<String> getPos() {
-        return pos;
-    }
-
-    public void setPos(List<String> pos) {
-        this.pos = pos;
-    }
-
-    public List<String> getTop() {
-        return top;
-    }
-
-    public void setTop(List<String> top) {
-        this.top = top;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Double getDayCost() {
-        return dayCost;
-    }
-
-    public void setDayCost(Double dayCost) {
-        this.dayCost = dayCost;
-    }
-
-    public Double getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Double budget) {
-        this.budget = budget;
-    }
-
-    public Double getBehavioralsBudget() {
-        return behavioralsBudget;
-    }
-
-    public void setBehavioralsBudget(Double behavioralsBudget) {
-        this.behavioralsBudget = behavioralsBudget;
-    }
-
-    public Double getBehavioralsExpense() {
-        return behavioralsExpense;
-    }
-
-    public void setBehavioralsExpense(Double behavioralsExpense) {
-        this.behavioralsExpense = behavioralsExpense;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("id", getId())
+                .append("region", getRegion())
+                .append("name", getName())
+                .append("url", getUrl())
+                .append("pos", getPos())
+                .append("top", getTop())
+                .append("comment", getComment())
+                .append("dayCost", getDayCost())
+                .append("budget", getBudget())
+                .append("state", getState())
+                .append("promos", promos)
+                .append("success", success)
+                .toString();
     }
 }

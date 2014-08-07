@@ -1,7 +1,7 @@
 package ru.webeffector.api.client.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import ru.webeffector.api.client.model.Campaign;
+import ru.webeffector.api.client.model.CampaignLite;
 
 import java.util.List;
 
@@ -11,8 +11,10 @@ import java.util.List;
  */
 public enum WebeffectorMethod {
     Token           ("/token", MethodType.POST),
-    ListCampaigns   (new TypeReference<List<Campaign>>() {}, "/seo"),
-    DeleteCampaign  ("/seo/{id}", MethodType.DELETE)
+    ListCampaigns   (new TypeReference<List<CampaignLite>>() {}, "/seo"),
+    DeleteCampaign  ("/seo/{id}", MethodType.DELETE),
+    ListPromotions  (""),
+    GetCampaign     ("/seo/{id}")
     ;
 
     private TypeReference<?> returnType;
