@@ -3,7 +3,7 @@ package ru.webeffector.api.client.method;
 import ru.webeffector.api.client.model.LoginInfo;
 import ru.webeffector.api.client.model.Token;
 import ru.webeffector.api.client.util.ApiMethod;
-import ru.webeffector.api.client.util.MethodType;
+import ru.webeffector.api.client.util.WebeffectorMethod;
 
 /**
  * @author Ernest Sadykov
@@ -11,7 +11,7 @@ import ru.webeffector.api.client.util.MethodType;
  */
 public interface Auth {
 
-    @ApiMethod(value = "/token", method = MethodType.POST)
+    @ApiMethod(WebeffectorMethod.Token)
     Token token(LoginInfo loginInfo);
 
 }

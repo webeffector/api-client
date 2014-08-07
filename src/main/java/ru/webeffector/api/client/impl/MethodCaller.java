@@ -1,5 +1,6 @@
 package ru.webeffector.api.client.impl;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.google.common.base.Function;
 import com.google.common.util.concurrent.Futures;
 import com.ning.http.client.*;
@@ -31,7 +32,7 @@ public class MethodCaller {
         this.client = client;
     }
 
-    public <T> T call(String url, MethodType method, Class<T> returnType, Object param) {
+    public <T> T call(String url, MethodType method, JavaType returnType, Object param) {
         Request request = buildRequest(method, url, param);
         Future<T> future = asFuture(request, returnType);
         try {
@@ -57,7 +58,7 @@ public class MethodCaller {
         return builder.build();
     }
 
-    private <T> Future<T> asFuture(Request request, final Class<T> returnType) {
+    private <T> Future<T> asFuture(Request request, final JavaType returnType) {
         try {
             com.ning.http.client.ListenableFuture<Response> future = client.executeRequest(request);
             return Futures.lazyTransform(future, new Function<Response, T>() {

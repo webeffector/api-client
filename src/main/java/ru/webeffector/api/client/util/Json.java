@@ -2,10 +2,7 @@ package ru.webeffector.api.client.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 
 import java.io.IOException;
 
@@ -39,21 +36,36 @@ public class Json {
         }
     }
 
-    public static <T> T parse(String json, TypeReference<T> tr) {
+    public static <T> T parse(String json, TypeReference<T> type) {
         try {
-            return MAPPER.readValue(json, tr);
+            return MAPPER.readValue(json, type);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static <T> T parse(String json, Class<T> resultClass) {
+    public static <T> T parse(String json, JavaType type) {
         try {
-            return mapper().readValue(json, resultClass);
+            return MAPPER.readValue(json, type);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public static <T> T parse(String json, Class<T> clazz) {
+        try {
+            return mapper().readValue(json, clazz);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> JavaType constructType(Class<T> clazz) {
+        return MAPPER.getTypeFactory().constructType(clazz);
+    }
+
+    public static <T> JavaType constructType(TypeReference<T> typeReference) {
+        return MAPPER.getTypeFactory().constructType(typeReference);
+    }
 }
 
