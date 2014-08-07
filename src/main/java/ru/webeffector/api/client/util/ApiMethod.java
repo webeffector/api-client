@@ -13,8 +13,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface ApiMethod {
 
-    String value();
-
-    MethodType method() default MethodType.GET;
+    WebeffectorMethod value();
 
 }

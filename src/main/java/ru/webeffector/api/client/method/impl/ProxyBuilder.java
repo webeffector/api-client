@@ -1,9 +1,12 @@
 package ru.webeffector.api.client.method.impl;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.google.common.reflect.Reflection;
 import ru.webeffector.api.client.impl.MethodCaller;
 import ru.webeffector.api.client.util.ApiMethod;
 import ru.webeffector.api.client.util.ContextArgument;
+import ru.webeffector.api.client.util.Json;
+import ru.webeffector.api.client.util.WebeffectorMethod;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
@@ -32,26 +35,38 @@ public class ProxyBuilder {
                 return name;
             }
 
-            ApiMethod annotation = method.getAnnotation(ApiMethod.class);
-            if (annotation == null) {
+            ApiMethod apiMethod = method.getAnnotation(ApiMethod.class);
+            if (apiMethod == null) {
                 throw new IllegalStateException("no annotation on method " + method.getName());
             }
 
+            WebeffectorMethod webeffectorMethod = apiMethod.value();
+
             Object param = args == null ? null : args[0];
-            String url = annotation.value();
+            String url = webeffectorMethod.getPath();
             if (param != null) {
-                Annotation[] annotations = method.getParameterAnnotations()[0];
-                if (annotations.length > 0) {
-                    String name = ((ContextArgument) annotations[0]).value();
-                    url = url.replace("{" + name + "}", String.valueOf(param));
-                    param = null;
+                Annotation[][] annotations = method.getParameterAnnotations();
+                for (Annotation[] annotationArray : annotations) {
+                    for (Annotation annotation : annotationArray) {
+                        if (annotation instanceof ContextArgument) {
+                            String name = ContextArgument.class.cast(annotation).value();
+                            url = url.replace("{" + name + "}", String.valueOf(param));
+                            param = null;
+                        }
+                    }
                 }
             }
 
-            Class<?> returnType = method.getReturnType();
-            returnType = Void.TYPE.equals(returnType) ? null : returnType;
+            JavaType javaType;
+            if (webeffectorMethod.getReturnType() != null) {
+                javaType = Json.constructType(webeffectorMethod.getReturnType());
+            } else {
+                Class<?> returnType = method.getReturnType();
+                returnType = Void.TYPE.equals(returnType) ? null : returnType;
+                javaType = Json.constructType(returnType);
+            }
 
-            return caller.call(url, annotation.method(), returnType, param);
+            return caller.call(url, webeffectorMethod.getMethodType(), javaType, param);
         }
     }
 

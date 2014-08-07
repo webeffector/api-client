@@ -11,24 +11,16 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Campaign {
+
     private String id;
-
     private String region;
-
     private String name;
-
     private String url;
-
     private String mode;
-
     private List<String> pos;
-
     private List<String> top;
-
     private String comment;
-
     private Double dayCost;
-
     private Double budget;
 
     @JsonProperty("behaviorals_budget")
