@@ -23,7 +23,7 @@ public class CampaignLite {
     private String comment;
     private Double dayCost;
     private BigDecimal budget;
-    private CampaignState state;
+    private String state;
 
     public String getId() {
         return id;
@@ -97,11 +97,11 @@ public class CampaignLite {
         this.budget = budget;
     }
 
-    public CampaignState getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(CampaignState state) {
+    public void setState(String state) {
         this.state = state;
     }
 
