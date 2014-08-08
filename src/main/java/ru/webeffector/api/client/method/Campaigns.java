@@ -15,7 +15,7 @@ import java.util.List;
 public interface Campaigns {
 
     @ApiMethod(WebeffectorMethod.DeleteCampaign)
-    boolean delete(@ContextArgument("id") String id);
+    void delete(@ContextArgument("id") String id);
 
     @ApiMethod(WebeffectorMethod.GetCampaign)
     Campaign get(@ContextArgument("id") String id);

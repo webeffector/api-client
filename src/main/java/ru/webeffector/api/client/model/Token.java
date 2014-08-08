@@ -7,26 +7,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @since 18.07.2014
  */
 public class Token {
-    @JsonProperty("token")
-    private String token;
 
-    @JsonProperty("access")
-    private String access;
+    private final String token;
+    private final String access;
+
+    public Token(@JsonProperty("token") String token,
+                 @JsonProperty("access") String access) {
+        this.token = token;
+        this.access = access;
+    }
 
     public String getToken() {
         return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getAccess() {
-        return access;
-    }
-
-    public void setAccess(String access) {
-        this.access = access;
     }
 
     public boolean canRead() {

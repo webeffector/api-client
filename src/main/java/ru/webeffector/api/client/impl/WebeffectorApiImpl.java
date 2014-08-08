@@ -4,6 +4,7 @@ import ru.webeffector.api.client.WebeffectorApi;
 import ru.webeffector.api.client.method.Auth;
 import ru.webeffector.api.client.method.Campaigns;
 import ru.webeffector.api.client.method.impl.ProxyBuilder;
+import ru.webeffector.api.client.model.Token;
 
 /**
  * @author Ernest Sadykov
@@ -18,8 +19,8 @@ class WebeffectorApiImpl implements WebeffectorApi {
     }
 
     @Override
-    public void updateToken(String token) {
-        caller.setToken(token);
+    public void updateToken(Token token) {
+        caller.setToken(token.getToken());
     }
 
     @Override
