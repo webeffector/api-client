@@ -1,7 +1,7 @@
 package ru.webeffector.api.client.method;
 
-import ru.webeffector.api.client.model.Campaign;
-import ru.webeffector.api.client.model.CampaignLite;
+import ru.webeffector.api.client.model.campaign.Campaign;
+import ru.webeffector.api.client.model.campaign.CampaignLite;
 import ru.webeffector.api.client.util.ApiMethod;
 import ru.webeffector.api.client.util.ContextArgument;
 import ru.webeffector.api.client.util.WebeffectorMethod;

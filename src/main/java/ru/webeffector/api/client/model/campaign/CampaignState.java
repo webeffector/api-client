@@ -1,4 +1,4 @@
-package ru.webeffector.api.client.model;
+package ru.webeffector.api.client.model.campaign;
 
 /**
  * @author Ernest Sadykov

@@ -187,6 +187,7 @@ public class PromotionLite {
                 .append("budget", budget)
                 .append("seoPressing", seoPressing)
                 .append("shows", shows)
+                .append("budgetType", budgetType)
                 .toString();
     }
 }

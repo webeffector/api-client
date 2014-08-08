@@ -1,7 +1,7 @@
 package ru.webeffector.api.client.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import ru.webeffector.api.client.model.CampaignLite;
+import ru.webeffector.api.client.model.campaign.CampaignLite;
 
 import java.util.List;
 

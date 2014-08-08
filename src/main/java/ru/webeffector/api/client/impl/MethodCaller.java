@@ -20,7 +20,6 @@ public class MethodCaller {
             new AsyncHttpClientConfig.Builder().setFollowRedirects(true).build());
     private static final String BASE_URL = System.getProperty("ru.effector.api.url", "http://api.webeffector.ru");
 
-
     private final AsyncHttpClient client;
     private String token;
 

@@ -1,4 +1,4 @@
-package ru.webeffector.api.client.model;
+package ru.webeffector.api.client.model.campaign;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
