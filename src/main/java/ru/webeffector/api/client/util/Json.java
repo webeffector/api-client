@@ -3,6 +3,9 @@ package ru.webeffector.api.client.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 
@@ -19,6 +22,12 @@ public class Json {
         MAPPER.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         MAPPER.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        MAPPER.registerModule(new JodaModule().addKeyDeserializer(LocalDate.class, new KeyDeserializer() {
+            @Override
+            public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+                return key.length() == 0 ? null : new LocalDate(key, DateTimeZone.forID("Europe/Moscow"));
+            }
+        }));
     }
 
     public static ObjectMapper mapper() {

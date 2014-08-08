@@ -3,10 +3,7 @@ package ru.webeffector.api.client.method.impl;
 import com.fasterxml.jackson.databind.JavaType;
 import com.google.common.reflect.Reflection;
 import ru.webeffector.api.client.impl.MethodCaller;
-import ru.webeffector.api.client.util.ApiMethod;
-import ru.webeffector.api.client.util.ContextArgument;
-import ru.webeffector.api.client.util.Json;
-import ru.webeffector.api.client.util.WebeffectorMethod;
+import ru.webeffector.api.client.util.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
@@ -30,7 +27,6 @@ public class ProxyBuilder {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            assert args == null || args.length == 1;
             if (method.getName().equals("toString") && args == null) {
                 return name;
             }
@@ -42,17 +38,18 @@ public class ProxyBuilder {
 
             WebeffectorMethod webeffectorMethod = apiMethod.value();
 
-            Object param = args == null ? null : args[0];
+            Object param = null;
             String url = webeffectorMethod.getPath();
-            if (param != null) {
-                Annotation[][] annotations = method.getParameterAnnotations();
-                for (Annotation[] annotationArray : annotations) {
-                    for (Annotation annotation : annotationArray) {
-                        if (annotation instanceof ContextArgument) {
-                            String name = ContextArgument.class.cast(annotation).value();
-                            url = url.replace("{" + name + "}", String.valueOf(param));
-                            param = null;
-                        }
+
+            Annotation[][] annotations = method.getParameterAnnotations();
+            for (int i = 0; i < annotations.length; ++i) {
+                for (Annotation annotation : annotations[i]) {
+                    if (annotation instanceof ContextArgument) {
+                        String name = ContextArgument.class.cast(annotation).value();
+                        url = url.replace("{" + name + "}", String.valueOf(args[i]));
+                    }
+                    if (annotation instanceof RequestBody) {
+                        param = args[i];
                     }
                 }
             }

@@ -3,6 +3,7 @@ package ru.webeffector.api.client.method;
 import ru.webeffector.api.client.model.LoginInfo;
 import ru.webeffector.api.client.model.Token;
 import ru.webeffector.api.client.util.ApiMethod;
+import ru.webeffector.api.client.util.RequestBody;
 import ru.webeffector.api.client.util.WebeffectorMethod;
 
 /**
@@ -12,6 +13,6 @@ import ru.webeffector.api.client.util.WebeffectorMethod;
 public interface Auth {
 
     @ApiMethod(WebeffectorMethod.Token)
-    Token token(LoginInfo loginInfo);
+    Token token(@RequestBody LoginInfo loginInfo);
 
 }

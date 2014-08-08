@@ -11,10 +11,12 @@ import java.util.List;
  */
 public enum WebeffectorMethod {
     Token           ("/token", MethodType.POST),
+
     ListCampaigns   (new TypeReference<List<CampaignLite>>() {}, "/seo"),
+    GetCampaign     ("/seo/{id}"),
     DeleteCampaign  ("/seo/{id}", MethodType.DELETE),
-    ListPromotions  (""),
-    GetCampaign     ("/seo/{id}")
+
+    GetPromotion    ("/seo/{campaign_id}/{promo_id}")
     ;
 
     private TypeReference<?> returnType;
