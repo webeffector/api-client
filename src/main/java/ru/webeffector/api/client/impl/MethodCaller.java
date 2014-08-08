@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.google.common.base.Function;
 import com.google.common.util.concurrent.Futures;
 import com.ning.http.client.*;
-import org.apache.commons.lang3.StringUtils;
 import ru.webeffector.api.client.util.Json;
 import ru.webeffector.api.client.util.MethodType;
 
@@ -17,20 +16,10 @@ import java.util.concurrent.Future;
  * @since 30.07.2014
  */
 public class MethodCaller {
-    private static final AsyncHttpClient DEFAULT_CLIENT;
-    private static final String BASE_URL;
+    private static final AsyncHttpClient DEFAULT_CLIENT = new AsyncHttpClient(
+            new AsyncHttpClientConfig.Builder().setFollowRedirects(true).build());
+    private static final String BASE_URL = System.getProperty("ru.effector.api.url", "http://api.webeffector.ru");
 
-    static {
-        DEFAULT_CLIENT = new AsyncHttpClient(
-                new AsyncHttpClientConfig.Builder().setFollowRedirects(true).build());
-
-        String url = System.getProperty("ru.effector.api.url");
-        if (StringUtils.isNotBlank(url)) {
-            BASE_URL = url;
-        } else {
-            BASE_URL = "http://api.webeffector.ru";
-        }
-    }
 
     private final AsyncHttpClient client;
     private String token;

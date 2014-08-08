@@ -10,37 +10,37 @@ import ru.webeffector.api.client.util.BudgetTypeDeserializer;
 @JsonDeserialize(using = BudgetTypeDeserializer.class)
 public enum BudgetType {
 
-    NoData                          ("Н/Д", "Нет данных"),
+    NoData                      ("Н/Д", "Нет данных"),
 
-    SuperLowFreq_SuperLowComp       ("сНЧ сНК", "Сверхнизкочастотный, сверхнизкоконкурентный"),
-    SuperLowFreq_LowComp            ("сНЧ НК", "Сверхнизкочастотный, низкоконкурентный"),
-    SuperLowFreq_MediumComp         ("сНЧ СК", "Сверхнизкочастотный, среднеконкурентный"),
-    SuperLowFreq_HighComp           ("сНЧ ВК", "Сверхнизкочастотный, высококонкурентный"),
-    SuperLowFreq_SuperHighComp      ("сНЧ сВК", "Сверхнизкочастотный, сверхвысококонкурентный"),
+    SuperLowFreq_SuperLowComp   ("сНЧ сНК", "Сверхнизкочастотный, сверхнизкоконкурентный"),
+    SuperLowFreq_LowComp        ("сНЧ НК", "Сверхнизкочастотный, низкоконкурентный"),
+    SuperLowFreq_MediumComp     ("сНЧ СК", "Сверхнизкочастотный, среднеконкурентный"),
+    SuperLowFreq_HighComp       ("сНЧ ВК", "Сверхнизкочастотный, высококонкурентный"),
+    SuperLowFreq_SuperHighComp  ("сНЧ сВК", "Сверхнизкочастотный, сверхвысококонкурентный"),
 
-    LowFreq_SuperLowComp            ("НЧ сНК", "Низкочастотный, сверхнизкоконкурентный"),
-    LowFreq_LowComp                 ("НЧ НК", "Низкочастотный, низкоконкурентный"),
-    LowFreq_MediumComp              ("НЧ СК", "Низкочастотный, среднеконкурентный"),
-    LowFreq_HighComp                ("НЧ ВК", "Низкочастотный, высококонкурентный"),
-    LowFreq_SuperHighComp           ("НЧ сВК", "Низкочастотный, сверхвысококонкурентный"),
+    LowFreq_SuperLowComp        ("НЧ сНК", "Низкочастотный, сверхнизкоконкурентный"),
+    LowFreq_LowComp             ("НЧ НК", "Низкочастотный, низкоконкурентный"),
+    LowFreq_MediumComp          ("НЧ СК", "Низкочастотный, среднеконкурентный"),
+    LowFreq_HighComp            ("НЧ ВК", "Низкочастотный, высококонкурентный"),
+    LowFreq_SuperHighComp       ("НЧ сВК", "Низкочастотный, сверхвысококонкурентный"),
 
-    MediumFreq_SuperLowComp         ("СЧ сНК", "Среднечастотный, сверхнизкоконкурентный"),
-    MediumFreq_LowComp              ("СЧ НК", "Среднечастотный, низкоконкурентный"),
-    MediumFreq_MediumComp           ("СЧ СК", "Среднечастотный, среднеконкурентный"),
-    MediumFreq_HighComp             ("СЧ ВК", "Среднечастотный, высококонкурентный"),
-    MediumFreq_SuperHighComp        ("СЧ сВК", "Среднечастотный, сверхвысококонкурентный"),
+    MediumFreq_SuperLowComp     ("СЧ сНК", "Среднечастотный, сверхнизкоконкурентный"),
+    MediumFreq_LowComp          ("СЧ НК", "Среднечастотный, низкоконкурентный"),
+    MediumFreq_MediumComp       ("СЧ СК", "Среднечастотный, среднеконкурентный"),
+    MediumFreq_HighComp         ("СЧ ВК", "Среднечастотный, высококонкурентный"),
+    MediumFreq_SuperHighComp    ("СЧ сВК", "Среднечастотный, сверхвысококонкурентный"),
 
-    HighFreq_SuperLowComp           ("ВЧ сНК", "Высокочастотный, сверхнизкоконкурентный"),
-    HighFreq_LowComp                ("ВЧ НК", "Высокочастотный, низкоконкурентный"),
-    HighFreq_MediumComp             ("ВЧ СК", "Высокочастотный, среднеконкурентный"),
-    HighFreq_HighComp               ("ВЧ ВК", "Высокочастотный, высококонкурентный"),
-    HighFreq_SuperHighComp          ("ВЧ сВК", "Высокочастотный, сверхвысококонкурентный"),
+    HighFreq_SuperLowComp       ("ВЧ сНК", "Высокочастотный, сверхнизкоконкурентный"),
+    HighFreq_LowComp            ("ВЧ НК", "Высокочастотный, низкоконкурентный"),
+    HighFreq_MediumComp         ("ВЧ СК", "Высокочастотный, среднеконкурентный"),
+    HighFreq_HighComp           ("ВЧ ВК", "Высокочастотный, высококонкурентный"),
+    HighFreq_SuperHighComp      ("ВЧ сВК", "Высокочастотный, сверхвысококонкурентный"),
 
-    SuperHighFreq_SuperLowComp       ("сВЧ сНК", "Сверхвысокочастотный, сверхнизкоконкурентный"),
-    SuperHighFreq_LowComp            ("сВЧ НК", "Сверхвысокочастотный, низкоконкурентный"),
-    SuperHighFreq_MediumComp         ("сВЧ СК", "Сверхвысокочастотный, среднеконкурентный"),
-    SuperHighFreq_HighComp           ("сВЧ ВК", "Сверхвысокочастотный, высококонкурентный"),
-    SuperHighFreq_SuperHighComp      ("сВЧ сВК", "Сверхвысокочастотный, сверхвысококонкурентный")
+    SuperHighFreq_SuperLowComp  ("сВЧ сНК", "Сверхвысокочастотный, сверхнизкоконкурентный"),
+    SuperHighFreq_LowComp       ("сВЧ НК", "Сверхвысокочастотный, низкоконкурентный"),
+    SuperHighFreq_MediumComp    ("сВЧ СК", "Сверхвысокочастотный, среднеконкурентный"),
+    SuperHighFreq_HighComp      ("сВЧ ВК", "Сверхвысокочастотный, высококонкурентный"),
+    SuperHighFreq_SuperHighComp ("сВЧ сВК", "Сверхвысокочастотный, сверхвысококонкурентный")
     ;
 
     private String shortTitle;
@@ -69,4 +69,8 @@ public enum BudgetType {
         return longTitle;
     }
 
+    @Override
+    public String toString() {
+        return longTitle;
+    }
 }
