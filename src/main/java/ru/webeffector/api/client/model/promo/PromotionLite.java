@@ -30,6 +30,7 @@ public class PromotionLite {
     private BigDecimal budget;
     private Integer seoPressing;
     private Integer shows;
+    private BudgetType budgetType;
 
     public BigDecimal getDayCost() {
         return dayCost;
@@ -157,6 +158,14 @@ public class PromotionLite {
 
     public void setShows(Integer shows) {
         this.shows = shows;
+    }
+
+    public BudgetType getBudgetType() {
+        return budgetType;
+    }
+
+    public void setBudgetType(BudgetType budgetType) {
+        this.budgetType = budgetType;
     }
 
     @Override
