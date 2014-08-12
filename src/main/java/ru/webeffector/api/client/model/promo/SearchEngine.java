@@ -9,5 +9,6 @@ public enum SearchEngine {
     google_ru,
     google_com,
     google_ua,
-    google_by
+    google_by,
+    sputnik_ru
 }
