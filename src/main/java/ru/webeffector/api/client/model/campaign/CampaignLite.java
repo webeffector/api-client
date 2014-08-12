@@ -1,8 +1,10 @@
 package ru.webeffector.api.client.model.campaign;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import ru.webeffector.api.client.util.deserializer.CampaignStatesDeserializer;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,7 +25,8 @@ public class CampaignLite {
     private String comment;
     private Double dayCost;
     private BigDecimal budget;
-    private String state;
+    @JsonDeserialize(using = CampaignStatesDeserializer.class)
+    private List<CampaignState> state;
 
     public String getId() {
         return id;
@@ -97,11 +100,11 @@ public class CampaignLite {
         this.budget = budget;
     }
 
-    public String getState() {
+    public List<CampaignState> getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(List<CampaignState> state) {
         this.state = state;
     }
 

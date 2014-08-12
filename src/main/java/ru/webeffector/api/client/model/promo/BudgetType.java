@@ -1,7 +1,7 @@
 package ru.webeffector.api.client.model.promo;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import ru.webeffector.api.client.util.BudgetTypeDeserializer;
+import ru.webeffector.api.client.util.deserializer.BudgetTypeDeserializer;
 
 /**
  * @author Ernest Sadykov

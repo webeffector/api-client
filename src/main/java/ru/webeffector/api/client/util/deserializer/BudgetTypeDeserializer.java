@@ -1,4 +1,4 @@
-package ru.webeffector.api.client.util;
+package ru.webeffector.api.client.util.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

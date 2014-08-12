@@ -7,5 +7,8 @@ package ru.webeffector.api.client.model.campaign;
 public enum CampaignState {
     WORK,
     REMOVED,
-    ARCHIVED
+    ARCHIVED,
+    SLEEP,
+    MONITOR,
+    READY
 }
