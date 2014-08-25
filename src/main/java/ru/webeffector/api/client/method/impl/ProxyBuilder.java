@@ -54,13 +54,14 @@ public class ProxyBuilder {
                 }
             }
 
-            JavaType javaType;
+            JavaType javaType = null;
             if (webeffectorMethod.getReturnType() != null) {
                 javaType = Json.constructType(webeffectorMethod.getReturnType());
             } else {
                 Class<?> returnType = method.getReturnType();
-                returnType = Void.TYPE.equals(returnType) ? null : returnType;
-                javaType = Json.constructType(returnType);
+                if (!Void.TYPE.equals(returnType)) {
+                    javaType = Json.constructType(returnType);
+                }
             }
 
             return caller.call(url, webeffectorMethod.getMethodType(), javaType, param);
