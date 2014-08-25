@@ -16,7 +16,9 @@ public enum WebeffectorMethod {
     GetCampaign     ("/seo/{id}"),
     DeleteCampaign  ("/seo/{id}", MethodType.DELETE),
 
-    GetPromotion    ("/seo/{campaign_id}/{promo_id}")
+    GetPromotion    ("/seo/{campaign_id}/{promo_id}"),
+
+    AddBudgetTask   ("/budgets/{task_id}", MethodType.POST)
     ;
 
     private TypeReference<?> returnType;
