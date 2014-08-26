@@ -10,5 +10,6 @@ public enum CampaignState {
     ARCHIVED,
     SLEEP,
     MONITOR,
-    READY
+    READY,
+    EMPTY
 }
