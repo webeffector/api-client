@@ -7,6 +7,8 @@ import ru.webeffector.api.client.util.ContextArgument;
 import ru.webeffector.api.client.util.RequestBody;
 import ru.webeffector.api.client.util.WebeffectorMethod;
 
+import java.util.List;
+
 /**
  * @author Ernest Sadykov
  * @since 25.08.2014
@@ -19,5 +21,8 @@ public interface Budgets {
 
     @ApiMethod(WebeffectorMethod.GetBudgetTask)
     BudgetTaskResult get(@ContextArgument("task_id") String taskId);
+
+    @ApiMethod(WebeffectorMethod.ListBudgetTasks)
+    List<BudgetTaskResult> list();
 
 }

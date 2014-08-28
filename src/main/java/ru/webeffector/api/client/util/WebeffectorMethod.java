@@ -1,6 +1,7 @@
 package ru.webeffector.api.client.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import ru.webeffector.api.client.model.budget.BudgetTaskResult;
 import ru.webeffector.api.client.model.campaign.CampaignLite;
 
 import java.util.List;
@@ -19,7 +20,8 @@ public enum WebeffectorMethod {
     GetPromotion    ("/seo/{campaign_id}/{promo_id}"),
 
     AddBudgetTask   ("/budgets/{task_id}", MethodType.POST),
-    GetBudgetTask   ("/budgets/{task_id}");
+    GetBudgetTask   ("/budgets/{task_id}"),
+    ListBudgetTasks (new TypeReference<List<BudgetTaskResult>>() {}, "/budgets");
 
     private TypeReference<?> returnType;
     private String path;
