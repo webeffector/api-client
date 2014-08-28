@@ -1,6 +1,5 @@
 package ru.webeffector.api.client.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
@@ -23,47 +22,19 @@ public class Json {
         MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         MAPPER.registerModule(new JodaModule().addKeyDeserializer(LocalDate.class, new KeyDeserializer() {
             @Override
-            public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
                 return key.length() == 0 ? null : new LocalDate(key, DateTimeZone.forID("Europe/Moscow"));
             }
         }));
-    }
-
-    public static ObjectMapper mapper() {
-        return MAPPER;
     }
 
     public static JsonNode toJson(Object obj) {
         return MAPPER.valueToTree(obj);
     }
 
-    public static <T> T fromJson(JsonNode json, Class<T> resultClass) {
-        try {
-            return MAPPER.treeToValue(json, resultClass);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static <T> T parse(String json, TypeReference<T> type) {
-        try {
-            return MAPPER.readValue(json, type);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static <T> T parse(String json, JavaType type) {
         try {
             return MAPPER.readValue(json, type);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static <T> T parse(String json, Class<T> clazz) {
-        try {
-            return mapper().readValue(json, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
