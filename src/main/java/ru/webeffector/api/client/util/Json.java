@@ -21,7 +21,6 @@ public class Json {
         MAPPER = new ObjectMapper();
         MAPPER.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        MAPPER.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
         MAPPER.registerModule(new JodaModule().addKeyDeserializer(LocalDate.class, new KeyDeserializer() {
             @Override
             public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException, JsonProcessingException {

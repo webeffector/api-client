@@ -1,6 +1,7 @@
 package ru.webeffector.api.client.model.campaign;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -23,8 +24,11 @@ public class CampaignLite {
     private List<String> pos;
     private List<String> top;
     private String comment;
+
+    @JsonProperty("day_cost")
     private Double dayCost;
     private BigDecimal budget;
+
     @JsonDeserialize(using = CampaignStatesDeserializer.class)
     private List<CampaignState> state;
 

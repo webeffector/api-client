@@ -1,6 +1,7 @@
 package ru.webeffector.api.client.model.promo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -14,22 +15,37 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PromotionLite {
 
+    @JsonProperty("day_cost")
     private BigDecimal dayCost;
     private Map<SearchEngine, Integer> positions;
+
+    @JsonProperty("yesterday_positions")
     private Map<SearchEngine, Integer> yesterdayPositions;
+
+    @JsonProperty("searcher_url")
     private Map<SearchEngine, String> searcherUrl;
     private String id;
     private Integer hits;
+
+    @JsonProperty("links_bought")
     private Integer linksBought;
     private String word;
     private String url;
+
+    @JsonProperty("recommended_budget")
     private BigDecimal recommendedBudget;
+
+    @JsonProperty("yandex_geo")
     private YandexGeo yandexGeo;
     private Integer position;
     private PromoState state;
     private BigDecimal budget;
+
+    @JsonProperty("seo_pressing")
     private Integer seoPressing;
     private Integer shows;
+
+    @JsonProperty("budget_type")
     private BudgetType budgetType;
 
     public BigDecimal getDayCost() {

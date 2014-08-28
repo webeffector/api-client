@@ -18,8 +18,8 @@ public enum WebeffectorMethod {
 
     GetPromotion    ("/seo/{campaign_id}/{promo_id}"),
 
-    AddBudgetTask   ("/budgets/{task_id}", MethodType.POST)
-    ;
+    AddBudgetTask   ("/budgets/{task_id}", MethodType.POST),
+    GetBudgetTask   ("/budgets/{task_id}");
 
     private TypeReference<?> returnType;
     private String path;

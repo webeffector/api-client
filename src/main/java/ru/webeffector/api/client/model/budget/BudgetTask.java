@@ -86,7 +86,7 @@ public class BudgetTask {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append("queries", queries)
+                .append("queries number", queries != null ? queries.size() : null)
                 .append("region", region)
                 .append("domain", domain)
                 .toString();

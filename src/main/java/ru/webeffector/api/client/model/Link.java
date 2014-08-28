@@ -1,5 +1,6 @@
 package ru.webeffector.api.client.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joda.time.LocalDate;
@@ -18,7 +19,11 @@ public class Link {
     private URL url;
     private String text;
     private BigDecimal price;
+
+    @JsonProperty("indexed_by_yandex")
     private Boolean indexedByYandex;
+
+    @JsonProperty("indexed_by_google")
     private Boolean indexedByGoogle;
 
     public Integer getId() {
