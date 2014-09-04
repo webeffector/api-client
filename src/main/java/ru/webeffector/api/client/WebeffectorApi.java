@@ -1,9 +1,6 @@
 package ru.webeffector.api.client;
 
-import ru.webeffector.api.client.method.Auth;
-import ru.webeffector.api.client.method.Budgets;
-import ru.webeffector.api.client.method.Campaigns;
-import ru.webeffector.api.client.method.Promotions;
+import ru.webeffector.api.client.method.*;
 import ru.webeffector.api.client.model.Token;
 
 /**
@@ -21,5 +18,7 @@ public interface WebeffectorApi {
     Promotions promotion();
 
     Budgets budget();
+
+    Amplification amplification();
 
 }

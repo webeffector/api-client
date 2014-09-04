@@ -1,10 +1,7 @@
 package ru.webeffector.api.client.impl;
 
 import ru.webeffector.api.client.WebeffectorApi;
-import ru.webeffector.api.client.method.Auth;
-import ru.webeffector.api.client.method.Budgets;
-import ru.webeffector.api.client.method.Campaigns;
-import ru.webeffector.api.client.method.Promotions;
+import ru.webeffector.api.client.method.*;
 import ru.webeffector.api.client.method.impl.ProxyBuilder;
 import ru.webeffector.api.client.model.Token;
 
@@ -45,6 +42,15 @@ class WebeffectorApiImpl implements WebeffectorApi {
         return create(Budgets.class);
     }
 
+    @Override
+    public Amplification amplification() {
+        return new Amplification() {
+            @Override
+            public LinkAmplification link() {
+                return create(LinkAmplification.class);
+            }
+        };
+    }
 
     private <T> T create(Class<T> targetInterface) {
         return ProxyBuilder.create(targetInterface, caller);
