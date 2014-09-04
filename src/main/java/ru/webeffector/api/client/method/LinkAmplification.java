@@ -1,13 +1,12 @@
 package ru.webeffector.api.client.method;
 
-import ru.webeffector.api.client.model.amplification.link.AnchorInfo;
+import ru.webeffector.api.client.model.amplification.link.LinkFindResult;
 import ru.webeffector.api.client.util.ApiMethod;
 import ru.webeffector.api.client.util.ContextArgument;
 import ru.webeffector.api.client.util.RequestBody;
 import ru.webeffector.api.client.util.WebeffectorMethod;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Alexandr Kolosov
@@ -16,6 +15,6 @@ import java.util.Map;
 public interface LinkAmplification {
 
     @ApiMethod(WebeffectorMethod.AmplificationLinkFind)
-    Map<String, AnchorInfo> find(@ContextArgument("id")String projectId, @RequestBody List<String> urls);
+    LinkFindResult find(@ContextArgument("id")String projectId, @RequestBody List<String> urls);
 
 }

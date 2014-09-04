@@ -1,12 +1,11 @@
 package ru.webeffector.api.client.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import ru.webeffector.api.client.model.amplification.link.AnchorInfo;
+import ru.webeffector.api.client.model.amplification.link.LinkFindResult;
 import ru.webeffector.api.client.model.budget.BudgetTaskResult;
 import ru.webeffector.api.client.model.campaign.CampaignLite;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Ernest Sadykov
@@ -25,7 +24,7 @@ public enum WebeffectorMethod {
     GetBudgetTask   ("/budgets/{task_id}"),
     ListBudgetTasks (new TypeReference<List<BudgetTaskResult>>() {}, "/budgets"),
 
-    AmplificationLinkFind   (new TypeReference<Map<String, AnchorInfo>>() {}, "/amplification/link/{id}/find", MethodType.POST)
+    AmplificationLinkFind   (new TypeReference<LinkFindResult>() {}, "/amplification/link/{id}/find", MethodType.POST)
     ;
 
     private TypeReference<?> returnType;
