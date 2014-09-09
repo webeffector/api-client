@@ -15,6 +15,7 @@ import java.util.List;
 public interface LinkAmplification {
 
     @ApiMethod(WebeffectorMethod.AmplificationLinkFind)
-    LinkFindResult find(@ContextArgument("id")String projectId, @RequestBody List<String> urls);
+    LinkFindResult find(@ContextArgument("id") String projectId,
+                        @RequestBody List<String> urls);
 
 }
