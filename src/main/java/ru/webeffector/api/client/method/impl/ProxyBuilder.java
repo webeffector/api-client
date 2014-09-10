@@ -40,6 +40,10 @@ public class ProxyBuilder {
 
             Object param = null;
             String url = webeffectorMethod.getPath();
+            PathRewriter rewriter = webeffectorMethod.getRewriter();
+            if (rewriter != null) {
+                url = rewriter.rewrite(url, args);
+            }
 
             Annotation[][] annotations = method.getParameterAnnotations();
             for (int i = 0; i < annotations.length; ++i) {

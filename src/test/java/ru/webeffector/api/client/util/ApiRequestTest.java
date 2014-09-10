@@ -22,8 +22,4 @@ public class ApiRequestTest {
             }
         });
     }
-
-    <T> void method(T arg) {
-//        System.out.println(arg.);
-    }
 }
