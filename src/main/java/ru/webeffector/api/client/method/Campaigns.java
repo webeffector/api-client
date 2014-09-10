@@ -4,6 +4,7 @@ import ru.webeffector.api.client.model.campaign.Campaign;
 import ru.webeffector.api.client.model.campaign.CampaignLite;
 import ru.webeffector.api.client.util.ApiMethod;
 import ru.webeffector.api.client.util.ContextArgument;
+import ru.webeffector.api.client.util.RequestBody;
 import ru.webeffector.api.client.util.WebeffectorMethod;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
  * @since 30.07.2014
  */
 public interface Campaigns {
+
+    @ApiMethod(WebeffectorMethod.CreateCampaign)
+    Campaign create(@RequestBody Campaign campaign);
 
     @ApiMethod(WebeffectorMethod.DeleteCampaign)
     void delete(@ContextArgument("id") String id);

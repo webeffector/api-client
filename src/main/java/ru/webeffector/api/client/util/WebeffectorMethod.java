@@ -15,6 +15,7 @@ public enum WebeffectorMethod {
 
     ListCampaigns   (new TypeReference<List<CampaignLite>>() {}, "/seo"),
     GetCampaign     ("/seo/{id}"),
+    CreateCampaign  ("/seo/E1", MethodType.POST),
     DeleteCampaign  ("/seo/{id}", MethodType.DELETE),
 
     GetPromotion    ("/seo/{campaign_id}/{promo_id}"),
