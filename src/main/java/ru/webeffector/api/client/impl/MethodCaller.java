@@ -1,6 +1,7 @@
 package ru.webeffector.api.client.impl;
 
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.type.SimpleType;
 import com.google.common.base.Function;
 import com.google.common.util.concurrent.Futures;
 import com.ning.http.client.*;
@@ -66,7 +67,12 @@ public class MethodCaller {
                 public T apply(Response response) {
                     if (returnType != null) {
                         try {
-                            return Json.parse(response.getResponseBody(), returnType);
+                            String responseBody = response.getResponseBody();
+                            if (response.getStatusCode() < 400) {
+                                return Json.parse(responseBody, returnType);
+                            } else {
+                                throw (ApiException) Json.parse(responseBody, SimpleType.construct(ApiException.class));
+                            }
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

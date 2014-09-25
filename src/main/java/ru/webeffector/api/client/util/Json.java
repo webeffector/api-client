@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
+import ru.webeffector.api.client.impl.ApiException;
+import ru.webeffector.api.client.util.deserializer.ApiExceptionMixin;
 
 import java.io.IOException;
 
@@ -20,6 +22,7 @@ public class Json {
         MAPPER = new ObjectMapper();
         MAPPER.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        MAPPER.addMixInAnnotations(ApiException.class, ApiExceptionMixin.class);
         MAPPER.registerModule(new JodaModule().addKeyDeserializer(LocalDate.class, new KeyDeserializer() {
             @Override
             public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
