@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.type.SimpleType;
 import com.google.common.base.Function;
 import com.google.common.util.concurrent.Futures;
 import com.ning.http.client.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.webeffector.api.client.util.Json;
 import ru.webeffector.api.client.util.MethodType;
 
@@ -17,8 +19,11 @@ import java.util.concurrent.Future;
  * @since 30.07.2014
  */
 public class MethodCaller {
+
+    private static final Logger logger = LoggerFactory.getLogger(MethodCaller.class);
     private static final AsyncHttpClient DEFAULT_CLIENT = new AsyncHttpClient(
             new AsyncHttpClientConfig.Builder().setFollowRedirects(true).build());
+
     private static final String BASE_URL = System.getProperty("ru.effector.api.url", "http://api.webeffector.ru");
 
     private final AsyncHttpClient client;
@@ -61,6 +66,9 @@ public class MethodCaller {
 
     private <T> Future<T> asFuture(Request request, final JavaType returnType) {
         try {
+            logger.debug("request url: {}", request.getRawUrl());
+            logger.debug("request content: {}", request.getStringData());
+
             com.ning.http.client.ListenableFuture<Response> future = client.executeRequest(request);
             return Futures.lazyTransform(future, new Function<Response, T>() {
                 @Override
@@ -68,7 +76,12 @@ public class MethodCaller {
                     if (returnType != null) {
                         try {
                             String responseBody = response.getResponseBody();
-                            if (response.getStatusCode() < 400) {
+                            int statusCode = response.getStatusCode();
+
+                            logger.debug("response status: {}", statusCode);
+                            logger.debug("response body: {}", responseBody);
+
+                            if (statusCode < 400) {
                                 return Json.parse(responseBody, returnType);
                             } else {
                                 throw (ApiException) Json.parse(responseBody, SimpleType.construct(ApiException.class));
