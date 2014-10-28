@@ -16,7 +16,7 @@ import java.util.List;
 public interface Budgets {
 
     @ApiMethod(WebeffectorMethod.AddBudgetTask)
-    void addBudgetTask(@RequestBody BudgetTask task,
+    void add(@RequestBody BudgetTask task,
                        @ContextArgument("task_id") String taskId);
 
     @ApiMethod(WebeffectorMethod.GetBudgetTask)
@@ -24,5 +24,8 @@ public interface Budgets {
 
     @ApiMethod(WebeffectorMethod.ListBudgetTasks)
     List<BudgetTaskResult> list();
+
+    @ApiMethod(WebeffectorMethod.DeleteBudgetTask)
+    void delete(@ContextArgument("task_id") String taskId);
 
 }

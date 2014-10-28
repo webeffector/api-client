@@ -35,6 +35,7 @@ public enum WebeffectorMethod {
     AddBudgetTask   ("/budgets/{task_id}", MethodType.POST),
     GetBudgetTask   ("/budgets/{task_id}"),
     ListBudgetTasks (new TypeReference<List<BudgetTaskResult>>() {}, "/budgets"),
+    DeleteBudgetTask   ("/budgets/{task_id}", MethodType.DELETE),
 
     AmplificationLinkFind   ("/amplification/link/{id}/find", MethodType.POST)
     ;
