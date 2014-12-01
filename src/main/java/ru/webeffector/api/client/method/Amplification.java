@@ -8,4 +8,6 @@ public interface Amplification {
 
     LinkAmplification link();
 
+    SocialActivityAmplification social();
+
 }

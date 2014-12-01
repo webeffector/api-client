@@ -49,6 +49,11 @@ class WebeffectorApiImpl implements WebeffectorApi {
             public LinkAmplification link() {
                 return create(LinkAmplification.class);
             }
+
+            @Override
+            public SocialActivityAmplification social() {
+                return create(SocialActivityAmplification.class);
+            }
         };
     }
 
