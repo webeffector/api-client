@@ -7,6 +7,11 @@ package ru.webeffector.api.client.impl;
 public class ApiException extends RuntimeException {
 
     private String code;
+    private Object body;
+
+    public ApiException(Object body) {
+        this.body = body;
+    }
 
     public ApiException(String code, String message) {
         super(message);
@@ -15,5 +20,9 @@ public class ApiException extends RuntimeException {
 
     public String getCode() {
         return code;
+    }
+
+    public Object getBody() {
+        return body;
     }
 }

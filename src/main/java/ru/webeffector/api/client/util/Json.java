@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import ru.webeffector.api.client.impl.ApiException;
+import ru.webeffector.api.client.impl.ParseException;
 import ru.webeffector.api.client.util.deserializer.ApiExceptionMixin;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class Json {
         try {
             return MAPPER.readValue(json, type);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ParseException(e);
         }
     }
 

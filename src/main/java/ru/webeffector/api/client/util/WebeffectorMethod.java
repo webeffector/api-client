@@ -1,9 +1,11 @@
 package ru.webeffector.api.client.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import ru.webeffector.api.client.impl.ApiException;
 import ru.webeffector.api.client.model.budget.BudgetTaskResult;
 import ru.webeffector.api.client.model.campaign.Campaign;
 import ru.webeffector.api.client.model.campaign.CampaignLite;
+import ru.webeffector.api.client.model.promo.Promotion;
 
 import java.util.List;
 
@@ -31,7 +33,12 @@ public enum WebeffectorMethod {
     DeleteCampaign  ("/seo/{id}", MethodType.DELETE),
 
     GetPromotion    ("/seo/{campaign_id}/{promo_id}"),
-    CreatePromotion    ("/seo/{campaign_id}/{promo_id}", MethodType.POST),
+    CreatePromotion    ("/seo/{campaign_id}/{promo_id}", MethodType.POST) {
+        @Override
+        public Class<?> exceptionClass() {
+            return Promotion.class;
+        }
+    },
 
     AddBudgetTask   ("/budgets/{task_id}", MethodType.POST),
     GetBudgetTask   ("/budgets/{task_id}"),
@@ -84,5 +91,9 @@ public enum WebeffectorMethod {
 
     public PathRewriter getRewriter() {
         return rewriter;
+    }
+
+    public Class<?> exceptionClass() {
+        return ApiException.class;
     }
 }

@@ -68,7 +68,8 @@ public class ProxyBuilder {
                 }
             }
 
-            return caller.call(url, webeffectorMethod.getMethodType(), javaType, param);
+            Class<?> exceptionClass = webeffectorMethod.exceptionClass();
+            return caller.call(url, webeffectorMethod.getMethodType(), javaType, Json.constructType(exceptionClass), param);
         }
     }
 

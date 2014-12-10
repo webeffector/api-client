@@ -38,12 +38,19 @@ public class MethodCaller {
         this.client = client;
     }
 
-    public <T> T call(String url, MethodType method, JavaType returnType, Object param) {
+    public <T> T call(String url, MethodType method, JavaType returnType, JavaType exceptionType, Object param) {
         Request request = buildRequest(method, url, param);
-        Future<T> future = asFuture(request, returnType);
+        Future<T> future = asFuture(request, returnType, exceptionType);
         try {
             return future.get();
-        } catch (ExecutionException | InterruptedException e) {
+        } catch (ExecutionException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof ApiException) {
+                throw ((ApiException) cause);
+            }
+
+            throw new IllegalStateException(e);
+        } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         }
     }
@@ -64,7 +71,7 @@ public class MethodCaller {
         return builder.build();
     }
 
-    private <T> Future<T> asFuture(Request request, final JavaType returnType) {
+    private <T> Future<T> asFuture(Request request, final JavaType returnType, final JavaType exceptionType) {
         try {
             logger.debug("request url: {}", request.getRawUrl());
             logger.debug("request content: {}", request.getStringData());
@@ -84,7 +91,12 @@ public class MethodCaller {
                             if (statusCode < 400) {
                                 return Json.parse(responseBody, returnType);
                             } else {
-                                throw (ApiException) Json.parse(responseBody, SimpleType.construct(ApiException.class));
+                                try {
+                                    Object result = Json.parse(responseBody, exceptionType);
+                                    throw new ApiException(result);
+                                } catch (ParseException ignored) {
+                                    throw (ApiException) Json.parse(responseBody, SimpleType.construct(ApiException.class));
+                                }
                             }
                         } catch (IOException e) {
                             throw new RuntimeException(e);
