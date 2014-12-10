@@ -31,6 +31,7 @@ public enum WebeffectorMethod {
     DeleteCampaign  ("/seo/{id}", MethodType.DELETE),
 
     GetPromotion    ("/seo/{campaign_id}/{promo_id}"),
+    CreatePromotion    ("/seo/{campaign_id}/{promo_id}", MethodType.POST),
 
     AddBudgetTask   ("/budgets/{task_id}", MethodType.POST),
     GetBudgetTask   ("/budgets/{task_id}"),
