@@ -51,8 +51,13 @@ class WebeffectorApiImpl implements WebeffectorApi {
             }
 
             @Override
-            public SocialActivityAmplification social() {
-                return create(SocialActivityAmplification.class);
+            public SocialExternalAmplification social() {
+                return create(SocialExternalAmplification.class);
+            }
+
+            @Override
+            public SocialPublicationAmplification publication() {
+                return create(SocialPublicationAmplification.class);
             }
         };
     }

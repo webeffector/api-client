@@ -46,7 +46,8 @@ public enum WebeffectorMethod {
     DeleteBudgetTask   ("/budgets/{task_id}", MethodType.DELETE),
 
     AmplificationLinkFind   ("/amplification/link/{id}/find", MethodType.POST),
-    AmplificationSocialActivityFind("/amplification/like/{id}/find", MethodType.POST)
+    AmplificationSocialActivityFind("/amplification/like/{id}/find", MethodType.POST),
+    AmplificationPublicationActivityFind("/amplification/publication/{id}/find", MethodType.POST)
     ;
 
     private TypeReference<?> returnType;
