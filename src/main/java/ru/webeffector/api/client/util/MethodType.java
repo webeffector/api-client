@@ -8,7 +8,8 @@ public enum MethodType {
     GET     (false),
     POST    (true),
     DELETE  (false),
-    PUT     (true);
+    PUT     (true),
+    OPTIONS (false);
 
     private final boolean hasBody;
 

@@ -21,4 +21,6 @@ public interface WebeffectorApi {
 
     Amplification amplification();
 
+    Matrix matrix();
+
 }

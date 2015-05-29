@@ -62,6 +62,36 @@ class WebeffectorApiImpl implements WebeffectorApi {
         };
     }
 
+    @Override
+    public Matrix matrix() {
+        return new Matrix() {
+            @Override
+            public Domain domain() {
+                return create(Domain.class);
+            }
+
+            @Override
+            public Promo promo() {
+                return create(Promo.class);
+            }
+
+            @Override
+            public Url url() {
+                return create(Url.class);
+            }
+
+            @Override
+            public Parameter parameter() {
+                return create(Parameter.class);
+            }
+
+            @Override
+            public Project project() {
+                return create(Project.class);
+            }
+        };
+    }
+
     private <T> T create(Class<T> targetInterface) {
         return ProxyBuilder.create(targetInterface, caller);
     }
