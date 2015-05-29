@@ -5,19 +5,9 @@ package ru.webeffector.api.client.util;
  * @since 18.07.2014
  */
 public enum MethodType {
-    GET     (false),
-    POST    (true),
-    DELETE  (false),
-    PUT     (true),
-    OPTIONS (false);
-
-    private final boolean hasBody;
-
-    MethodType(boolean hasBody) {
-        this.hasBody = hasBody;
-    }
-
-    public boolean hasBody() {
-        return hasBody;
-    }
+    GET,
+    POST,
+    DELETE,
+    PUT,
+    OPTIONS;
 }

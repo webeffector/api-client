@@ -62,7 +62,7 @@ public class MethodCaller {
             builder.addQueryParameter("token", token);
         }
 
-        if (method.hasBody()) {
+        if (param != null) {
             builder.setHeader("Content-Type", "application/json; charset=utf-8")
                     .setBodyEncoding("UTF-8");
             builder.setBody(Json.toJson(param).toString());
