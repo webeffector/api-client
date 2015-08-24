@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Ernest Sadykov
  * @since 07.08.2014
  */
-public enum WebeffectorMethod {
+public enum WebeffectorMethod implements MethodDefinition {
     Token           ("/token", MethodType.POST),
 
     ListCampaigns   (new TypeReference<List<CampaignLite>>() {}, "/seo"),
@@ -137,7 +137,7 @@ public enum WebeffectorMethod {
     public Class<?> exceptionClass() {
         return ApiException.class;
     }
-    
+
     
     
     public static class RewriterHelper {

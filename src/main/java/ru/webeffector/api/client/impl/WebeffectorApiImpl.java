@@ -9,7 +9,7 @@ import ru.webeffector.api.client.model.Token;
  * @author Ernest Sadykov
  * @since 30.07.2014
  */
-class WebeffectorApiImpl implements WebeffectorApi {
+public class WebeffectorApiImpl implements WebeffectorApi {
 
     private final MethodCaller caller;
 
@@ -92,7 +92,7 @@ class WebeffectorApiImpl implements WebeffectorApi {
         };
     }
 
-    private <T> T create(Class<T> targetInterface) {
+    public <T> T create(Class<T> targetInterface) {
         return ProxyBuilder.create(targetInterface, caller);
     }
 }

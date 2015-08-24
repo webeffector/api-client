@@ -32,11 +32,17 @@ public class ProxyBuilder {
             }
 
             ApiMethod apiMethod = method.getAnnotation(ApiMethod.class);
+            MethodDefinition webeffectorMethod;
             if (apiMethod == null) {
-                throw new IllegalStateException("no annotation on method " + method.getName());
+                CustomApiMethod customApiMethod = method.getAnnotation(CustomApiMethod.class);
+                if (customApiMethod == null) {
+                    throw new IllegalStateException("no annotation on method " + method.getName());
+                } else {
+                    webeffectorMethod = customApiMethod.value().newInstance();
+                }
+            } else {
+                webeffectorMethod = apiMethod.value();
             }
-
-            WebeffectorMethod webeffectorMethod = apiMethod.value();
 
             Object param = null;
             String url = webeffectorMethod.getPath();
@@ -67,7 +73,6 @@ public class ProxyBuilder {
                     javaType = Json.constructType(returnType);
                 }
             }
-
             Class<?> exceptionClass = webeffectorMethod.exceptionClass();
             return caller.call(url, webeffectorMethod.getMethodType(), javaType, Json.constructType(exceptionClass), param);
         }
